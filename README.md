@@ -7,10 +7,29 @@
 3. Upload Documents (WIP)
 4. eSign (WIP)
 
-### SDK API Design
-  1. User Interface describes user APIs
-  2. `public readonly Digilocker.generateUser(userId: string) => User`
-  4. `public readonly Digilocker.utility.generateCodeChallenge(codeVerifier?: string) => string`
+
+### Digilocker
+```ts
+
+interface Config {
+  // Application level config
+  clientId: string;
+  clientSecret: string;
+  callbackURL: string;
+}
+
+interface Digilocker {
+  init: (config: Config) => Digilocker;
+  generateUser: (userId: string) => User;
+  setPersistence: (persistFunction: PersistFunction) => Status<PersistFunction>;
+  setFetch: (fetchFunction: FetchFunction) => Status<FetchFunction>;
+  setLogger: (logger: Logger) => Status<Logger>;
+
+  utility: {
+    generateCodeChallenge: (codeVerifier?: string) => string;
+  };
+}
+```
 
 ### DocumentType
 ```ts
@@ -62,23 +81,43 @@ interface Issuer {
 interface User {
   userId: string;
   isLoggedIn: boolean;
-  private loginMetadata: {
+
+  // User goes and logs in on the frontend => authorizationCode;
+  constructURL: () => string;
+  loginCallback: (authorizationCode: string) => User;
+
+  login:() => Promise<LoginError || User>;
+  
+  loginMetadata: {
     authorizationCode: string;
     codeVerifier: string;
     accessToken: string;
   }
+
   documents: Document[];
   issuers: Issuer[];
-  refreshIssuers: async () => Promise<void>;
-  refreshDocuments: async () => Promise<void>;
-  searchDocument: async (documentSearchFilter: DocumentSearchFilter) => Promise<Document[] || DocumentType>;
-  searchIssuer: async (issuerSearchFilter: IssuerSearchFilter) => Promise<Issuer[]);
-  logout: async () => Promise<void>;
-  login: async () => Promise<LoginError || User>;
-  constructURL: () => string;
-  update: async (user: User) => Promise<User>;
-  getDocumentByType: async (type: DocumentType) => Promise<Document>;
+  
+  refreshIssuers:() => Promise<void>;
+  refreshDocuments:() => Promise<void>;
+  searchDocument:(documentSearchFilter: DocumentSearchFilter) => Promise<Document[] || DocumentType>;
+  searchIssuer:(issuerSearchFilter: IssuerSearchFilter) => Promise<Issuer[]>);
+  logout:() => Promise<void>;
+
+  refreshAccessToken: () => Promise<void>;
+
+  update:(user: User) => Promise<User>;
+  getDocumentByType:(type: DocumentType) => Promise<Document>;
+
+  // Globals from Digilocker
+  persist: PersistFunction;
+  fetch: FetchFunction;
+  log: Logger;
+
+  // Frontend UserData
+  public getData: () => Promise<Partial<User>>;
 }
+
+interface PersistFunction {  (user: User) => Promise<PersistResponse<User>>}
 
 // AND and string are matched by contains
 interface DocumentSearchFilter {
@@ -99,3 +138,4 @@ interface LoginError {
   ...
 }
 ```
+
