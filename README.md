@@ -3,11 +3,9 @@
 ### Current List of APIs
 
 1. Login
-2. List Issuers - Gives Issuer IDs, OrgIDs; Remains same for everyone? @tushar to evaluate this assumption
-3. Pull Documents - list of documents that you can fetch
-4. Fetch Documents - Gives you actual documents
-5. Upload Documents
-6. eSign
+2. Get Documents
+3. Upload Documents (WIP)
+4. eSign (WIP)
 
 ### SDK API Design
 
@@ -27,8 +25,31 @@
   4. `public readonly Digilocker.utility.generateCodeChallenge(codeVerifier?: string) => string`
 
 ### DocumentType
+```ts
+interface DocumentType {
+  
+}
+
+```
 
 ### Document
+```ts
+interface Document {
+  name": "string",
+  type": "string",
+  size": "string",
+  date": "string",
+  parent": "string",
+  mime": [
+    {}
+  ],
+  "uri": "string",
+  "doctype": "string",
+  "description": "string",
+  "issuerid": "string",
+  "issuer": "string"
+}
+```
 
 ### User
 ```ts
