@@ -1,12 +1,16 @@
 # Digilocker-SDK
 
-### Current List of APIs
+## Current List of APIs
 
 1. Login
 2. Get Documents
 3. Upload Documents (WIP)
 4. eSign (WIP)
 
+## Usage
+### Frontend
+
+### Backend
 
 ### Digilocker
 ```ts
