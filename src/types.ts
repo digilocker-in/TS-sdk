@@ -91,7 +91,7 @@ export type PersistResponse<T> = {
 export type PersistFunction = (user: User) => Promise<PersistResponse<User>>;
 
 export interface DocumentSearchFilter {
-  DigiLockerDocumentType: DigiLockerDocumentType[];
+  digiLockerDocumentType: DigiLockerDocumentType[];
   issuer: Issuer;
   name: string;
   date__gte: string;
@@ -113,7 +113,7 @@ export interface User {
   constructURL: () => string;
   loginCallback: (authorizationCode: string) => User;
   login: () => Promise<LoginError | User>;
-  loginMetadata: LoginMetadata;
+  loginMetadata: LoginMetadata | undefined;
   documents: Document[];
   issuers: Issuer[];
   refreshIssuers: () => Promise<void>;
