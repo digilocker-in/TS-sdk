@@ -83,12 +83,12 @@ export interface LoginMetadata {
   accessToken: string;
 }
 
-type PersistResponse<T> = {
+export type PersistResponse<T> = {
   status: 'success' | 'error';
   data: T;
 };
 
-type PersistFunction = (user: User) => Promise<PersistResponse<User>>;
+export type PersistFunction = (user: User) => Promise<PersistResponse<User>>;
 
 export interface DocumentSearchFilter {
   DigiLockerDocumentType: DigiLockerDocumentType[];

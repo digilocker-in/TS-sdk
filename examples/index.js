@@ -1,3 +1,4 @@
-const dsdk = require('digilocker-sdk');
+// const dsdk = require('digilocker-sdk');
+const { DigiLockerDocumentType } = require('../dist');
 
-console.log(dsdk.sum(10, 5));
+console.log(DigiLockerDocumentType);
