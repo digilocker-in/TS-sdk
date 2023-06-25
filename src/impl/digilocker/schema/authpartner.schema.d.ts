@@ -3,161 +3,160 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
-  "/oauth2/1/authorize": {
+  '/oauth2/1/authorize': {
     /**
-     * Get Authorization Code 
+     * Get Authorization Code
      * @description Call to this API starts authorization flow using OAuth 2.0 protocol. This isn't an API call—it's a DigiLocker web page that lets the user sign in to DigiLocker and authorize your application to access user’s data. After the user decides whether or not to authorize your app, they will be redirected to the redirect link provided by your application.
      */
-    get: operations["Get Authorization Code id"];
+    get: operations['Get Authorization Code id'];
   };
-  "/oauth2/1/token": {
+  '/oauth2/1/token': {
     /**
-     * Get Access Token 
+     * Get Access Token
      * @description This endpoint only applies to apps using the authorization code flow. An app calls this endpoint to acquire a bearer token once the user has authorized the app. Calls to /oauth2/1/token need to be authenticated using the app's key and secret. These can either be passed as application/x-www-form-urlencoded POST parameters (see parameters below) or via HTTP basic authentication. If basic authentication is used, the app key should be provided as the username, and the app secret should be provided as the password.
      */
-    post: operations["getaccesstoken id"];
+    post: operations['getaccesstoken id'];
   };
-  "/oauth2/1/code": {
+  '/oauth2/1/code': {
     /**
-     * Get Device Code 
+     * Get Device Code
      * @description The client device calls the DigiLocker API to get the device code by providing the client_id issued to the device OEM and either the username or the mobile number of the user. DigiLocker responds with a device code and then sends an OTP on the mobile number and email address associated with the user’s account. The masked mobile number and email address is also sent in response. The device should use these values to notify the users about the mobile and email address on which the OTP has been sent.
      */
-    post: operations["Get Device Code id"];
+    post: operations['Get Device Code id'];
   };
-  "/oauth2/1/revoke": {
+  '/oauth2/1/revoke': {
     /**
-     * Revoke Token. 
+     * Revoke Token.
      * @description Client applications can revoke a previously obtained refresh or access token when it is no longer needed. This is done by making a request to the token revocation endpoint. DigiLocker will invalidate the specified token and, if applicable, other tokens based on the same authorisation grant. This API may be used to sign out a user from DigiLocker. This API will work for server based web applications, mobile application and limited input devices.
      */
-    post: operations["get token revocation id"];
+    post: operations['get token revocation id'];
   };
-  "/oauth2/1/user": {
+  '/oauth2/1/user': {
     /**
-     * Get User Details 
+     * Get User Details
      * @description Client applications can call this API to get the DigiLocker Id, name, date of birth and gender of the account holder. An access token is required to call this API. The API will return the user details of the account with which the access token is linked. It is strongly recommended that the API can be called by client application only once after acquiring the access token. Since the user details do not change, the client application may store the values and use them when necessary than calling this API repeatedly.
      */
-    get: operations["Account Detail API id"];
+    get: operations['Account Detail API id'];
   };
-  "/oauth2/1/files/": {
+  '/oauth2/1/files/': {
     /**
-     * Get List of Self Uploaded Documents 
+     * Get List of Self Uploaded Documents
      * @description Returns the list of meta-data about documents or folders in user’s DigiLocker in a specific location.
      */
-    get: operations["Get List of Self Uploaded Documents"];
+    get: operations['Get List of Self Uploaded Documents'];
   };
-  "/oauth2/1/files/{id}": {
+  '/oauth2/1/files/{id}': {
     /**
-     * Get List of Self Uploaded Documents 
+     * Get List of Self Uploaded Documents
      * @description Returns the list of meta-data about documents or folders in user’s DigiLocker in a specific location.
      */
-    get: operations["Get List of Self Uploaded Documents id"];
+    get: operations['Get List of Self Uploaded Documents id'];
   };
-  "/oauth2/2/files/issued": {
+  '/oauth2/2/files/issued': {
     /**
-     * Issued Documents 
+     * Issued Documents
      * @description Returns the list of meta-data about issued documents in user’s DigiLocker.
      */
-    get: operations["Get List of issued Documents id"];
+    get: operations['Get List of issued Documents id'];
   };
-  "/oauth2/1/files/issued": {
+  '/oauth2/1/files/issued': {
     /**
-     * Issued Documents 
+     * Issued Documents
      * @description Returns the list of meta-data about issued documents in user’s DigiLocker.
      */
-    get: operations["Get List of issued Documents Version1 id"];
+    get: operations['Get List of issued Documents Version1 id'];
   };
-  "/oauth2/1/file/{uri}": {
+  '/oauth2/1/file/{uri}': {
     /**
-     * Get File from URI 
+     * Get File from URI
      * @description Returns a file from URI. This API can be used to fetch both issued document and uploaded document.
      */
-    get: operations["Get File from URI id"];
+    get: operations['Get File from URI id'];
   };
-  "/oauth2/1/xml/{uri}": {
+  '/oauth2/1/xml/{uri}': {
     /**
-     * Get Certificate Data in XML Format from URI 
+     * Get Certificate Data in XML Format from URI
      * @description Returns the certificate data in machine readable XML format for a URI. This API can be used to only for issued documents. The XML data may not be available for all documents. If the XML data is available for a particular document, the mime parameter in Get List of Issued Documents API will contain application/xml. Please refer to Digital Locker XML Certificate Formats for more details of XML formats of various documents.
      */
-    get: operations["Get Certificate Data in XML Format from URI id"];
+    get: operations['Get Certificate Data in XML Format from URI id'];
   };
-  "/oauth2/2/xml/eaadhaar": {
+  '/oauth2/2/xml/eaadhaar': {
     /**
-     * Get e-Aadhaar Data in XML Format 
+     * Get e-Aadhaar Data in XML Format
      * @description Returns e-Aadhaar data in XML format for the account.
      */
-    get: operations["Get e-Aadhaar Data in XML Format id"];
+    get: operations['Get e-Aadhaar Data in XML Format id'];
   };
-  "/oauth2/1/file/upload": {
+  '/oauth2/1/file/upload': {
     /**
-     * Upload file to locker 
+     * Upload file to locker
      * @description This API can be used to save/upload a file to uploaded documents in DigiLocker. The allowed file types are JPG, JPEG, PNG and PDF. The file size must not exceed 10MB.
      */
-    post: operations["Upload File to Locker id"];
+    post: operations['Upload File to Locker id'];
   };
-  "/oauth2/1/pull/pulldocument": {
+  '/oauth2/1/pull/pulldocument': {
     /**
-     * Pull Document 
+     * Pull Document
      * @description This API allows a client application to search a document/certificate from issuer’s repository using the parameters provided by a user. The searched document is saved in user’s issued document section of DigiLocker if the search is successful.
      */
-    post: operations["Pull Document id"];
+    post: operations['Pull Document id'];
   };
-  "/signup/2/demoauth": {
+  '/signup/2/demoauth': {
     /**
-     * SIGN UP 
+     * SIGN UP
      * @description This API is used to validate Aadhaar details and verify the mobile number by generating an OTP. This API call, if successful, will be followed by verify OTP call by the partner application if the user is online or available to perform OTP validation as indicated in verification parameter
      */
-    post: operations["SIGN UP id"];
+    post: operations['SIGN UP id'];
   };
-  "/signup/1/demoauthverify": {
+  '/signup/1/demoauthverify': {
     /**
-     * Verify OTP 
+     * Verify OTP
      * @description This API is used to verify the OTP sent by DigiLocker during the sign up API call above.
      */
-    post: operations["Verify OTP id"];
+    post: operations['Verify OTP id'];
   };
-  "/oauth2/1/pull/issuers": {
+  '/oauth2/1/pull/issuers': {
     /**
-     * Get List of Issuers 
+     * Get List of Issuers
      * @description Returns the list of issuers registered with DigiLocker.
      */
-    post: operations["Get List of Issuers id"];
+    post: operations['Get List of Issuers id'];
   };
-  "/oauth2/1/pull/doctype": {
+  '/oauth2/1/pull/doctype': {
     /**
-     * Get List of Documents Provided by an Issuer 
+     * Get List of Documents Provided by an Issuer
      * @description Returns a list of documents/certificates issued by an issuer organization registered with DigiLocker.
      */
-    post: operations["Get List of Documents Provided by an Issuer id"];
+    post: operations['Get List of Documents Provided by an Issuer id'];
   };
-  "/oauth2/1/pull/parameters": {
+  '/oauth2/1/pull/parameters': {
     /**
-     * Get Search Parameters for a Document 
+     * Get Search Parameters for a Document
      * @description Returns a list of parameters required to search a document/certificate of an issuer organization registered with DigiLocker. These parameters are used to pull a document from issuer’s repository using Pull Document API mentioned in subsequent section.
      */
-    post: operations["Get Search Parameters for a Document id"];
+    post: operations['Get Search Parameters for a Document id'];
   };
-  "/account/2/verify": {
+  '/account/2/verify': {
     /**
-     * Verify Account 
+     * Verify Account
      * @description This API can be used to verify whether a mobile number or Aadhaar number is already registered with DigiLocker.
      */
-    post: operations["Verify Account id"];
+    post: operations['Verify Account id'];
   };
-  "/account/1/pushuri": {
+  '/account/1/pushuri': {
     /**
-     * Push URI to Account 
+     * Push URI to Account
      * @description The API can use to push or delete a single URI into Digital Locker using DigiLocker Id acquired using Get User Details API. This API can be used to push the certificate details to Digital Locker as and when a certificate is generated in the issuer system. The issuing departments must register on DigiLocker as a registered Issuer and implement the requisite Issuer APIs as mentioned in Digital Locker Issuer API Specification document prior to pushing certificates using this API.
      */
-    post: operations["Push URI to Account id"];
+    post: operations['Push URI to Account id'];
   };
-  "/statistics/1/counts": {
+  '/statistics/1/counts': {
     /**
-     * Get Statistics 
+     * Get Statistics
      * @description Returns DigiLocker statistics such as the count of users, authentic documents, issuers and requesters as on a specific date.
      */
-    post: operations["Get Statistics id"];
+    post: operations['Get Statistics id'];
   };
 }
 
@@ -167,7 +166,7 @@ export interface components {
   schemas: {
     AccessToken: {
       /** @enum {string} */
-      grant_type: "authorization_code";
+      grant_type: 'authorization_code';
       /** @example ca82123a5476aa2f5e4638957c0ecc55c6ec07c1 */
       code?: string;
       /** @example https://ndh.digitallocker.gov.in/oauth2-redirect.html */
@@ -181,63 +180,63 @@ export interface components {
     };
     AccessResponse: {
       /**
-       * @description The access token that can be used to call the DigiLocker APIs. 
+       * @description The access token that can be used to call the DigiLocker APIs.
        * @example bc125c212a4b03a9a188a858be5a163f379e878a
        */
       access_token: string;
       /**
-       * Format: int64 
-       * @description The duration in seconds for which the access token is valid 
+       * Format: int64
+       * @description The duration in seconds for which the access token is valid
        * @example 3600
        */
       expires_in: number;
       /**
-       * @description The type of token which will always be Bearer. 
+       * @description The type of token which will always be Bearer.
        * @example Bearer
        */
       token_type: string;
       /** @description Scope of the token. */
       scope: string;
       /**
-       * @description The refresh token used to refresh the above access token when it expires. Please refer to Refresh Access Token API for more details. 
+       * @description The refresh token used to refresh the above access token when it expires. Please refer to Refresh Access Token API for more details.
        * @example a47ab18c593703e4f83a274694db7422a8cfcb8f
        */
       refresh_token: string;
       /**
-       * @description A unique 36 character DigiLocker Id of the user account. 
+       * @description A unique 36 character DigiLocker Id of the user account.
        * @example 123e4567-e89b-12d3-a456-426655440000
        */
       digilocker_id: string;
       /**
-       * @description The name of the user as registered with DigiLocker. 
+       * @description The name of the user as registered with DigiLocker.
        * @example Sunil Kumar
        */
       name: string;
       /**
-       * @description This indicates whether eAadhaar data is available for this account. Possible values are Y and N. 
+       * @description This indicates whether eAadhaar data is available for this account. Possible values are Y and N.
        * @enum {string}
        */
-      eaadhar: "Y" | "N";
+      eaadhar: 'Y' | 'N';
       /**
-       * Format: dd-mm-yyy 
-       * @description This is date of birth of the user as registered with DigiLocker in DDMMYYYY format. 
+       * Format: dd-mm-yyy
+       * @description This is date of birth of the user as registered with DigiLocker in DDMMYYYY format.
        * @example 31121970
        */
       dob: number;
       /**
-       * @description This is gender of the user as registered with DigiLocker. The possible values are M, F, T for male, female and transgender respectively. 
+       * @description This is gender of the user as registered with DigiLocker. The possible values are M, F, T for male, female and transgender respectively.
        * @enum {string}
        */
-      gender: "M" | "F" | "T";
+      gender: 'M' | 'F' | 'T';
       /**
-       * @description A unique reference of the user account. 
+       * @description A unique reference of the user account.
        * @example 1c66bec26364cd6fefaabc6cae91840a
        */
       reference_key: string;
     };
     RefreshToken: {
       /** @enum {string} */
-      grant_type: "refresh_token";
+      grant_type: 'refresh_token';
       /** @example ca82123a5476aa2f5e4638957c0ecc55c6ec07c1 */
       refresh_token: string;
       /** @example ABCDEFG */
@@ -254,7 +253,7 @@ export interface components {
     DeviceAuthorizationCode: {
       client_id?: string;
       /**
-       * @description The parameter must be set to device_code. 
+       * @description The parameter must be set to device_code.
        * @example device_code
        */
       response_type?: string;
@@ -268,22 +267,22 @@ export interface components {
     };
     DeviceAuthorizationCodeResponse: {
       /**
-       * @description The device verification code. 
+       * @description The device verification code.
        * @example 74tq5miHKB
        */
       device_code: string;
       /**
-       * @description The masked mobile number on which the OTP is sent. 
+       * @description The masked mobile number on which the OTP is sent.
        * @example XXXXXX1234
        */
       dl_masked_mobile: number;
       /**
-       * @description The masked email on which the OTP is sent. 
+       * @description The masked email on which the OTP is sent.
        * @example xxxxxx@gmail.com
        */
       dl_masked_email: string;
       /**
-       * @description The duration in seconds for which the code is valid. 
+       * @description The duration in seconds for which the code is valid.
        * @example 600
        */
       expires_in: number;
@@ -292,7 +291,7 @@ export interface components {
       /** @description Provide the client id that was created during the application registration process on Partners Portal. */
       client_id?: string;
       /**
-       * @description The grant type, which must be “urn:ietf:params:oauth:grant-type:device_code”. 
+       * @description The grant type, which must be “urn:ietf:params:oauth:grant-type:device_code”.
        * @example urn:ietf:params:oauth:grant-type:device_code
        */
       grant_type?: string;
@@ -304,19 +303,19 @@ export interface components {
     AuthTokenResponse: {
       /**
        * @description The access token that can be used to call the
-       *     DigiLocker APIs. 
+       *     DigiLocker APIs.
        * @example bc125c212a4b03a9a188a858be5a163f379e878a
        */
       access_token: string;
       /**
-       * Format: int64 
+       * Format: int64
        * @description The duration in seconds for which the access token is
-       *             valid. 
+       *             valid.
        * @example 3600
        */
       expires_in: number;
       /**
-       * @description The type of token which will always be Bearer. 
+       * @description The type of token which will always be Bearer.
        * @example Bearer
        */
       token_type: string;
@@ -326,14 +325,14 @@ export interface components {
        * @description The refresh token used to refresh the above access
        *   token when it expires. This will value will be
        *   returned only in case of web applications and not be
-       *   returned for limited input devices. 
+       *   returned for limited input devices.
        * @example ad6f4004cc3e53f56bda391fe485fc4d32928061
        */
       refresh_token: string;
     };
     FileUpload: {
       /** @description The mime type of the file e.g. image/jpg, image/jpeg, image/png, application/pdf. */
-      "Content-Type"?: string;
+      'Content-Type'?: string;
     };
     FileUploadResponse: {
       details?: {
@@ -347,7 +346,7 @@ export interface components {
       /** @description Provide the client id that was created during the application registration process on Partners Portal. */
       clientid?: string;
       /**
-       * Format: binary 
+       * Format: binary
        * @description Provide SHA-256 encrypted value of the client secret, clientid and ts parameters above concatenated in this sequence (client secret, clientid, ts). The hmac parameter is used by DigiLocker to ensure the data integrity and authentication of the request. Use the Client Secret Key generated during the application registration process on Partners Portal as the client secret.
        */
       hmac?: string;
@@ -360,10 +359,10 @@ export interface components {
       /** @description This is date of birth of the user as mentioned in Aadhaar in DDMMYYYY format. */
       dob?: number;
       /**
-       * @description This is gender of the user as mentioned in Aadhaar. The possible values are M, F, T for male, female and transgender respectively. 
+       * @description This is gender of the user as mentioned in Aadhaar. The possible values are M, F, T for male, female and transgender respectively.
        * @enum {unknown}
        */
-      gender?: "M" | "F" | "T";
+      gender?: 'M' | 'F' | 'T';
       /** @description The parameter indicates whether the mobile number provided above should be validated by DigiLocker. If this parameter is ‘Y’, the DigiLocker sends an OTP to verify the mobile number. In this case the client application will call the second API to validate the OTP. The user will be signed on only after successful OTP validation. This flow should be used when the user account is created by user himself/herself or the user is present to provide the OTP. If this parameter is ‘N’, the user account will be created without OTP validation. The OTP validation will be performed when the user signs in for the first time in DigiLocker. This flow should be used when the user account needs to be created in the absence of the user. */
       verification?: string;
       /** @description The consent indicator from the user for performing demographic authentication using Aadhaar details. This Partner Application must capture the user consent for performing the Aadhaar demographic authentication. The possible values are ‘Y’ and ‘N’. The sign up request will be processed only when this indicator is ‘Y’. */
@@ -376,32 +375,32 @@ export interface components {
     DemoAuthResponse: {
       details?: {
         /**
-         * @description The access token that can be used to call the DigiLocker APIs. 
+         * @description The access token that can be used to call the DigiLocker APIs.
          * @example bc125c212a4b03a9a188a858be5a163f379e878a
          */
         access_token: string;
         /**
-         * @description The duration in seconds for which the access token is valid. 
+         * @description The duration in seconds for which the access token is valid.
          * @example 3600
          */
         expires_in: string;
         /**
-         * @description The type of token which will always be Bearer. 
+         * @description The type of token which will always be Bearer.
          * @example Bearer
          */
         token_type: string;
         /**
-         * @description Scope of the token 
+         * @description Scope of the token
          * @example
          */
         scope: string;
         /**
-         * @description The refresh token used to refresh the above access token when it expires. Please refer to Refresh Access Token API for more details. 
+         * @description The refresh token used to refresh the above access token when it expires. Please refer to Refresh Access Token API for more details.
          * @example a47ab18c593703e4f83a274694db7422a8cfcb8f
          */
         refresh_token: string;
         /**
-         * @description The masked mobile number of the user on which the OTP has been sent.            
+         * @description The masked mobile number of the user on which the OTP has been sent.
          * @example ******3712
          */
         mobile: number;
@@ -411,7 +410,7 @@ export interface components {
       /** @description Provide the client id that was created during the application registration process on Partners Portal. */
       clientid?: string;
       /**
-       * Format: binary 
+       * Format: binary
        * @description Provide SHA-256 encrypted value of the client secret, clientid and ts parameters above concatenated in this sequence (client secret, clientid, ts). The hmac parameter is used by DigiLocker to ensure the data integrity and authentication of the request. Use the Client Secret Key generated during the application registration process on Partners Portal as the client secret.
        */
       hmac?: string;
@@ -425,46 +424,46 @@ export interface components {
     DemoAuthVerifyResponse: {
       details?: {
         /**
-         * @description The access token that can be used to call the DigiLocker APIs. 
+         * @description The access token that can be used to call the DigiLocker APIs.
          * @example bc125c212a4b03a9a188a858be5a163f379e878a
          */
         access_token: string;
         /**
-         * @description The duration in seconds for which the access token is valid. 
+         * @description The duration in seconds for which the access token is valid.
          * @example 3600
          */
         expires_in: string;
         /**
-         * @description The type of token which will always be Bearer. 
+         * @description The type of token which will always be Bearer.
          * @example Bearer
          */
         token_type: string;
         /**
-         * @description Scope of the token 
+         * @description Scope of the token
          * @example
          */
         scope: string;
         /**
-         * @description The refresh token used to refresh the above access token when it expires. Please refer to Refresh Access Token API for more details. 
+         * @description The refresh token used to refresh the above access token when it expires. Please refer to Refresh Access Token API for more details.
          * @example a47ab18c593703e4f83a274694db7422a8cfcb8f
          */
         refresh_token: string;
       };
     };
     IssuerResponse: {
-      issuers: ({
-          name: string;
-          description: string;
-          categories: string;
-          issuerid: string;
-          orgid: string;
-        })[];
+      issuers: {
+        name: string;
+        description: string;
+        categories: string;
+        issuerid: string;
+        orgid: string;
+      }[];
     };
     Issuer: {
       /** @description Provide the client id that was created during the application registration process on Partners Portal. */
       clientid?: string;
       /**
-       * Format: binary 
+       * Format: binary
        * @description Provide SHA-256 encrypted value of the client secret, clientid and ts parameters above concatenated in this sequence (client secret, clientid, ts). The hmac parameter is used by DigiLocker to ensure the data integrity and authentication of the request. Use the Client Secret Key generated during the application registration process on Partners Portal as the client secret.
        */
       hmac?: string;
@@ -475,7 +474,7 @@ export interface components {
       /** @description Provide the client id that was created during the application registration process on Partners Portal. */
       clientid?: string;
       /**
-       * Format: binary 
+       * Format: binary
        * @description Provide SHA-256 encrypted value of the client secret, clientid and ts parameters above concatenated in this sequence (client secret, clientid, ts). The hmac parameter is used by DigiLocker to ensure the data integrity and authentication of the request. Use the Client Secret Key generated during the application registration process on Partners Portal as the client secret.
        */
       hmac?: string;
@@ -485,16 +484,16 @@ export interface components {
       orgid?: string;
     };
     DocTypeResponse: {
-      documents: ({
-          doctype: string;
-          description: string;
-        })[];
+      documents: {
+        doctype: string;
+        description: string;
+      }[];
     };
     SearchParameters: {
       /** @description Provide the client id that was created during the application registration process on Partners Portal. */
       clientid?: string;
       /**
-       * Format: binary 
+       * Format: binary
        * @description Provide SHA-256 encrypted value of the client secret, clientid and ts parameters above concatenated in this sequence (client secret, clientid, ts). The hmac parameter is used by DigiLocker to ensure the data integrity and authentication of the request. Use the Client Secret Key generated during the application registration process on Partners Portal as the client secret.
        */
       hmac?: string;
@@ -505,17 +504,17 @@ export interface components {
       /** @description A 5 character unique document type provided by DigiLocker. */
       doctype?: string;
     };
-    SearchParametersResponse: ({
-        label: string;
-        paramname: string;
-        valuelist?: unknown;
-        example: string;
-      })[];
+    SearchParametersResponse: {
+      label: string;
+      paramname: string;
+      valuelist?: unknown;
+      example: string;
+    }[];
     VerifyAccount: {
       /** @description Provide the client id that was created during the application registration process on Partners Portal. */
       clientid?: string;
       /**
-       * Format: binary 
+       * Format: binary
        * @description Provide SHA-256 encrypted value of the client secret, clientid and ts parameters above concatenated in this sequence (client secret, clientid, ts). The hmac parameter is used by DigiLocker to ensure the data integrity and authentication of the request. Use the Client Secret Key generated during the application registration process on Partners Portal as the client secret.
        */
       hmac?: string;
@@ -528,12 +527,12 @@ export interface components {
     };
     VerifyAccountResponse: {
       /**
-       * @description true indicates that the provided Aadhaar/mobile number is already registered and false indicates otherwise. 
+       * @description true indicates that the provided Aadhaar/mobile number is already registered and false indicates otherwise.
        * @example true
        */
       registered: string;
       /**
-       * @description A unique 36 character DigiLocker Id of the user account. 
+       * @description A unique 36 character DigiLocker Id of the user account.
        * @example 123e4567-e89b-12d3-a456-426655440000
        */
       digilockerid: string;
@@ -542,7 +541,7 @@ export interface components {
       /** @description Provide the client id that was created during the application registration process on Partners Portal. */
       clientid?: string;
       /**
-       * Format: binary 
+       * Format: binary
        * @description Provide SHA-256 encrypted value of the client secret, clientid and ts parameters above concatenated in this sequence (client secret, clientid, ts). The hmac parameter is used by DigiLocker to ensure the data integrity and authentication of the request. Use the Client Secret Key generated during the application registration process on Partners Portal as the client secret.
        */
       hmac?: string;
@@ -567,7 +566,7 @@ export interface components {
       /** @description Provide the client id that was created during the application registration process on Partners Portal. */
       clientid?: string;
       /**
-       * Format: binary 
+       * Format: binary
        * @description Provide SHA-256 encrypted value of the client secret, clientid and ts parameters above concatenated in this sequence (client secret, clientid, ts). The hmac parameter is used by DigiLocker to ensure the data integrity and authentication of the request. Use the Client Secret Key generated during the application registration process on Partners Portal as the client secret.
        */
       hmac?: string;
@@ -576,70 +575,70 @@ export interface components {
     };
     GetStatisticsResponse: {
       /**
-       * @description Count of registered users on DigiLocker. 
+       * @description Count of registered users on DigiLocker.
        * @example 25873490
        */
       users: string;
       /**
-       * @description Count of authentic documents available through DigiLocker. 
+       * @description Count of authentic documents available through DigiLocker.
        * @example 3520475277
        */
       authentic_documents: string;
       /**
-       * @description Count of issuer organizations registered on DigiLocker. 
+       * @description Count of issuer organizations registered on DigiLocker.
        * @example 134
        */
       issuers: string;
       /**
-       * @description Count of requester organizations registered on DigiLocker. 
+       * @description Count of requester organizations registered on DigiLocker.
        * @example 45
        */
       requestors: string;
       /**
-       * @description The date on which this statistics is generated. 
+       * @description The date on which this statistics is generated.
        * @example 31072019
        */
       count_as_on: string;
       /** @description List of last 12 months cumulative user registrations */
       monthwise_registations: {
         /**
-         * @description Unique id of the list item. 
+         * @description Unique id of the list item.
          * @example 18496
          */
         id?: number;
         /**
-         * @description Month of the year in numeric format with January as 1 
+         * @description Month of the year in numeric format with January as 1
          * @example 5
          */
         month?: number;
         /**
-         * @description Year in YYYY format 
+         * @description Year in YYYY format
          * @example 2018
          */
         year?: number;
         /**
-         * @description Count of cumulative user registrations in the given month. 
+         * @description Count of cumulative user registrations in the given month.
          * @example 124794
          */
         count?: number;
         details2?: {
           /**
-           * @description Unique id of the list item. 
+           * @description Unique id of the list item.
            * @example 18496
            */
           id?: number;
           /**
-           * @description Month of the year in numeric format with January as 1 
+           * @description Month of the year in numeric format with January as 1
            * @example 5
            */
           month?: number;
           /**
-           * @description Year in YYYY format 
+           * @description Year in YYYY format
            * @example 2018
            */
           year?: number;
           /**
-           * @description Count of cumulative user registrations in the given month. 
+           * @description Count of cumulative user registrations in the given month.
            * @example 124794
            */
           count?: number;
@@ -648,68 +647,68 @@ export interface components {
       /** @description List of cumulative year-wise counts of authentic documents in DigiLocker. */
       yearwise_authentic_documents: {
         /**
-         * @description Unique id of the list item. 
+         * @description Unique id of the list item.
          * @example 18347
          */
         id?: number;
         /**
-         * @description Year in YYYY format. 
+         * @description Year in YYYY format.
          * @example 2016
          */
         year?: number;
         /**
          * @description Count of cumulative user authentic documents in
-         *   the given year. 
+         *   the given year.
          * @example 10134567
          */
         count?: number;
         details?: {
           /**
-           * @description Unique id of the list item. 
+           * @description Unique id of the list item.
            * @example 18350
            */
           id?: number;
           /**
-           * @description Year in YYYY format. 
+           * @description Year in YYYY format.
            * @example 2017
            */
           year?: number;
           /**
-           * @description Count of cumulative user authentic documents in the given year. 
+           * @description Count of cumulative user authentic documents in the given year.
            * @example 1000548093
            */
           count?: number;
         };
         details1?: {
           /**
-           * @description Unique id of the list item. 
+           * @description Unique id of the list item.
            * @example 18354
            */
           id?: number;
           /**
-           * @description Year in YYYY format. 
+           * @description Year in YYYY format.
            * @example 2018
            */
           year?: number;
           /**
-           * @description Count of cumulative user authentic documents in the given year. 
+           * @description Count of cumulative user authentic documents in the given year.
            * @example 2410543684
            */
           count?: number;
         };
         details2?: {
           /**
-           * @description Unique id of the list item. 
+           * @description Unique id of the list item.
            * @example 18567
            */
           id?: number;
           /**
-           * @description Year in YYYY format. 
+           * @description Year in YYYY format.
            * @example 2019
            */
           year?: number;
           /**
-           * @description Count of cumulative user authentic documents in the given year.   
+           * @description Count of cumulative user authentic documents in the given year.
            * @example 3520475277
            */
           count?: number;
@@ -717,7 +716,7 @@ export interface components {
       };
     };
     XMLFormatSchema: {
-      CertificateData: (unknown)[];
+      CertificateData: unknown[];
       Signature: {
         SignedInfo?: unknown;
         SignatureValue?: unknown;
@@ -975,12 +974,11 @@ export interface components {
 export type external = Record<string, never>;
 
 export interface operations {
-
   /**
-   * Get Authorization Code 
+   * Get Authorization Code
    * @description Call to this API starts authorization flow using OAuth 2.0 protocol. This isn't an API call—it's a DigiLocker web page that lets the user sign in to DigiLocker and authorize your application to access user’s data. After the user decides whether or not to authorize your app, they will be redirected to the redirect link provided by your application.
    */
-  "Get Authorization Code id": {
+  'Get Authorization Code id': {
     parameters: {
       query: {
         /** @description Provide the client id that was created during the application registration process on Partners Portal. */
@@ -997,10 +995,10 @@ export interface operations {
          * The code_challenge sent as this parameter is the Base64URL (with no
          * padding) encoded SHA256 hash of the code verifier.
          *         Code block:
-         * 
+         *
          *        ```
          *        string base64_url_encode_without_padding(string arg)
-         *        { 
+         *        {
          *           string s = base64encode(arg); //Regular base64encoder with padding
          *           s = s.replace(’=’,’’); //Remove any trailing ’=’
          *           s = s.replace(’+’, ’-’); //Replace ’+’ with ’-’
@@ -1021,7 +1019,7 @@ export interface operations {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": {
+          'application/json': {
             details?: {
               access_token: string;
               expires_in: number;
@@ -1036,17 +1034,17 @@ export interface operations {
     };
   };
   /**
-   * Get Access Token 
+   * Get Access Token
    * @description This endpoint only applies to apps using the authorization code flow. An app calls this endpoint to acquire a bearer token once the user has authorized the app. Calls to /oauth2/1/token need to be authenticated using the app's key and secret. These can either be passed as application/x-www-form-urlencoded POST parameters (see parameters below) or via HTTP basic authentication. If basic authentication is used, the app key should be provided as the username, and the app secret should be provided as the password.
    */
-  "getaccesstoken id": {
+  'getaccesstoken id': {
     /** @description Details of documents being created. */
     requestBody: {
       content: {
-        "application/json": {
-          "Get access token using authorization code"?: components["schemas"]["AccessToken"];
-          "Get access token using refresh token"?: components["schemas"]["RefreshToken"];
-          "Get access token using device code and OTP"?: components["schemas"]["DeviceAccessToken"];
+        'application/json': {
+          'Get access token using authorization code'?: components['schemas']['AccessToken'];
+          'Get access token using refresh token'?: components['schemas']['RefreshToken'];
+          'Get access token using device code and OTP'?: components['schemas']['DeviceAccessToken'];
         };
       };
     };
@@ -1054,7 +1052,7 @@ export interface operations {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": components["schemas"]["AccessResponse"];
+          'application/json': components['schemas']['AccessResponse'];
         };
       };
       /** @description Bad request */
@@ -1064,32 +1062,36 @@ export interface operations {
     };
   };
   /**
-   * Get Device Code 
+   * Get Device Code
    * @description The client device calls the DigiLocker API to get the device code by providing the client_id issued to the device OEM and either the username or the mobile number of the user. DigiLocker responds with a device code and then sends an OTP on the mobile number and email address associated with the user’s account. The masked mobile number and email address is also sent in response. The device should use these values to notify the users about the mobile and email address on which the OTP has been sent.
    */
-  "Get Device Code id": {
+  'Get Device Code id': {
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["DeviceAuthorizationCode"];
+        'application/json': components['schemas']['DeviceAuthorizationCode'];
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": components["schemas"]["DeviceAuthorizationCodeResponse"];
+          'application/json': components['schemas']['DeviceAuthorizationCodeResponse'];
         };
       };
       /** @description Bad Request */
       400: {
         content: {
-          "application/json": components["schemas"]["ResponseOne"] | components["schemas"]["ResponseTwo"] | components["schemas"]["ResponseThree"] | components["schemas"]["ResponseFour"];
+          'application/json':
+            | components['schemas']['ResponseOne']
+            | components['schemas']['ResponseTwo']
+            | components['schemas']['ResponseThree']
+            | components['schemas']['ResponseFour'];
         };
       };
       /** @description The client_id parameter is invalid. */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_client_id */
             error?: string;
             /** @example The client_id parameter is invalid */
@@ -1100,26 +1102,28 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": components["schemas"]["ResponseFive"] | components["schemas"]["ResponseSix"];
+          'application/json':
+            | components['schemas']['ResponseFive']
+            | components['schemas']['ResponseSix'];
         };
       };
     };
   };
   /**
-   * Revoke Token. 
+   * Revoke Token.
    * @description Client applications can revoke a previously obtained refresh or access token when it is no longer needed. This is done by making a request to the token revocation endpoint. DigiLocker will invalidate the specified token and, if applicable, other tokens based on the same authorisation grant. This API may be used to sign out a user from DigiLocker. This API will work for server based web applications, mobile application and limited input devices.
    */
-  "get token revocation id": {
+  'get token revocation id': {
     requestBody?: {
       content: {
-        "application/json": {
+        'application/json': {
           /** @description The token that needs to be revoked. */
           token: string;
           /**
-           * @description The type of the above token. The value will be one of access_token or refresh_token. If this parameter is not sent, DigiLocker will look for this token in both access and refresh tokens and then revoke it. 
+           * @description The type of the above token. The value will be one of access_token or refresh_token. If this parameter is not sent, DigiLocker will look for this token in both access and refresh tokens and then revoke it.
            * @enum {string}
            */
-          token_type_hint?: "refresh_token" | "access_token";
+          token_type_hint?: 'refresh_token' | 'access_token';
         };
       };
     };
@@ -1131,42 +1135,42 @@ export interface operations {
     };
   };
   /**
-   * Get User Details 
+   * Get User Details
    * @description Client applications can call this API to get the DigiLocker Id, name, date of birth and gender of the account holder. An access token is required to call this API. The API will return the user details of the account with which the access token is linked. It is strongly recommended that the API can be called by client application only once after acquiring the access token. Since the user details do not change, the client application may store the values and use them when necessary than calling this API repeatedly.
    */
-  "Account Detail API id": {
+  'Account Detail API id': {
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": {
+          'application/json': {
             details?: {
               /**
-               * @description A unique 36 character DigiLocker Id of the user account. 
+               * @description A unique 36 character DigiLocker Id of the user account.
                * @example 123e4567-e89b-12d3-a456-426655440000
                */
               digilockerid: string;
               /**
-               * @description The name of the user as registered with DigiLocker. 
+               * @description The name of the user as registered with DigiLocker.
                * @example Sunil Kumar
                */
               name: string;
               /**
-               * @description This indicates whether eAadhaar data is available for this account. Possible values are Y and N. 
+               * @description This indicates whether eAadhaar data is available for this account. Possible values are Y and N.
                * @enum {string}
                */
-              eaadhar?: "Y" | "N";
+              eaadhar?: 'Y' | 'N';
               /**
-               * Format: dd-mm-yyy 
-               * @description This is date of birth of the user as registered with DigiLocker in DDMMYYYY format. 
+               * Format: dd-mm-yyy
+               * @description This is date of birth of the user as registered with DigiLocker in DDMMYYYY format.
                * @example 31121970
                */
               dob: string;
               /**
-               * @description This is gender of the user as registered with DigiLocker. The possible values are M, F, T for male, female and transgender respectively. 
+               * @description This is gender of the user as registered with DigiLocker. The possible values are M, F, T for male, female and transgender respectively.
                * @enum {string}
                */
-              gender: "M" | "F" | "T";
+              gender: 'M' | 'F' | 'T';
             };
           };
         };
@@ -1174,7 +1178,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_token */
             error?: string;
             /** @example The access token is invalid */
@@ -1185,7 +1189,7 @@ export interface operations {
       /** @description Internal server error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example unexpected_error */
             error?: string;
             /** @example Internal server error */
@@ -1196,36 +1200,36 @@ export interface operations {
     };
   };
   /**
-   * Get List of Self Uploaded Documents 
+   * Get List of Self Uploaded Documents
    * @description Returns the list of meta-data about documents or folders in user’s DigiLocker in a specific location.
    */
-  "Get List of Self Uploaded Documents": {
+  'Get List of Self Uploaded Documents': {
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": {
+          'application/json': {
             directory: string;
-            items: ({
-                /** @example 189079894 */
-                id: string;
-                name: string;
-                type: string;
-                size: string;
-                date: string;
-                parent: string;
-                mime: string;
-                uri: string;
-                description: string;
-                issuer: string;
-              })[];
+            items: {
+              /** @example 189079894 */
+              id: string;
+              name: string;
+              type: string;
+              size: string;
+              date: string;
+              parent: string;
+              mime: string;
+              uri: string;
+              description: string;
+              issuer: string;
+            }[];
           };
         };
       };
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_token */
             error?: string;
             /** @example The access token is invalid */
@@ -1236,7 +1240,7 @@ export interface operations {
       /** @description Not found */
       404: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_id */
             error?: string;
             /** @example The folder does not exist */
@@ -1247,7 +1251,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example unexpected_error */
             error?: string;
             /** @example Internal server error */
@@ -1258,10 +1262,10 @@ export interface operations {
     };
   };
   /**
-   * Get List of Self Uploaded Documents 
+   * Get List of Self Uploaded Documents
    * @description Returns the list of meta-data about documents or folders in user’s DigiLocker in a specific location.
    */
-  "Get List of Self Uploaded Documents id": {
+  'Get List of Self Uploaded Documents id': {
     parameters: {
       path: {
         /** @description The id of the folder to list. To list the files of root folder of a user’s locker, do not send this parameter. This is sent as a part of the URL. */
@@ -1272,55 +1276,55 @@ export interface operations {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": {
+          'application/json': {
             details?: {
               /**
-               * @description The name of the file or folder. 
+               * @description The name of the file or folder.
                * @example My Documents
                */
               name: string;
               /**
-               * @description String dir for folder and string file for file. 
+               * @description String dir for folder and string file for file.
                * @example dir
                */
               type: string;
               /**
-               * @description The id if this item is a folder. 
+               * @description The id if this item is a folder.
                * @example 5678
                */
               id: number;
               /**
-               * @description Size of file or folder. 
+               * @description Size of file or folder.
                * @example 366481
                */
               size: string;
               /**
-               * @description This contains the date of file upload in case of self uploaded documents 
+               * @description This contains the date of file upload in case of self uploaded documents
                * @example 2015-05-12T15:50:38Z
                */
               date: string;
               /**
-               * @description The id of the parent folder. 
+               * @description The id of the parent folder.
                * @example 1234
                */
               parent: string;
               /**
-               * @description The mime type of the file. This field will contain “application/PDF” for PDF files; “image/png” for PNG files and “image/jpg” or “image/jpeg” for JPG/JPEG files. This will be blank in case of folder. 
+               * @description The mime type of the file. This field will contain “application/PDF” for PDF files; “image/png” for PNG files and “image/jpg” or “image/jpeg” for JPG/JPEG files. This will be blank in case of folder.
                * @example
                */
               mime: string;
               /**
-               * @description This is the unique identifier of the document shared by the user in DigiLocker. You will use this identifier to get the actual file from DigiLocker using the API. URI will be blank in case of folder. 
+               * @description This is the unique identifier of the document shared by the user in DigiLocker. You will use this identifier to get the actual file from DigiLocker using the API. URI will be blank in case of folder.
                * @example
                */
               uri: string;
               /**
-               * @description This is the descriptive document type stored in DigiLocker such as ‘Income Certificate’ or ‘Driving License’. 
+               * @description This is the descriptive document type stored in DigiLocker such as ‘Income Certificate’ or ‘Driving License’.
                * @example
                */
               description: string;
               /**
-               * @description The name of the issuer. This is blank in case of uploaded documents and folders. 
+               * @description The name of the issuer. This is blank in case of uploaded documents and folders.
                * @example
                */
               issuer: string;
@@ -1331,7 +1335,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_token */
             error?: string;
             /** @example The access token is invalid */
@@ -1342,7 +1346,7 @@ export interface operations {
       /** @description Not found */
       404: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_id */
             error?: string;
             /** @example The folder does not exist */
@@ -1353,7 +1357,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example unexpected_error */
             error?: string;
             /** @example Internal server error */
@@ -1364,28 +1368,28 @@ export interface operations {
     };
   };
   /**
-   * Issued Documents 
+   * Issued Documents
    * @description Returns the list of meta-data about issued documents in user’s DigiLocker.
    */
-  "Get List of issued Documents id": {
+  'Get List of issued Documents id': {
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": {
-            items: ({
-                name: string;
-                type: string;
-                size: string;
-                date: string;
-                parent: string;
-                mime?: (unknown)[];
-                uri: string;
-                doctype: string;
-                description: string;
-                issuerid: string;
-                issuer: string;
-              })[];
+          'application/json': {
+            items: {
+              name: string;
+              type: string;
+              size: string;
+              date: string;
+              parent: string;
+              mime?: unknown[];
+              uri: string;
+              doctype: string;
+              description: string;
+              issuerid: string;
+              issuer: string;
+            }[];
             resource: string;
           };
         };
@@ -1393,7 +1397,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_token */
             error?: string;
             /** @example The access token is invalid */
@@ -1404,74 +1408,76 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": components["schemas"]["ResponseSix"] | components["schemas"]["ResponseSeven"];
+          'application/json':
+            | components['schemas']['ResponseSix']
+            | components['schemas']['ResponseSeven'];
         };
       };
     };
   };
   /**
-   * Issued Documents 
+   * Issued Documents
    * @description Returns the list of meta-data about issued documents in user’s DigiLocker.
    */
-  "Get List of issued Documents Version1 id": {
+  'Get List of issued Documents Version1 id': {
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": {
+          'application/json': {
             details?: {
               /**
-               * @description The name of the certificate. 
+               * @description The name of the certificate.
                * @example Class XII Marksheet
                */
               name: string;
               /**
-               * @description String file. 
+               * @description String file.
                * @example file
                */
               type: string;
               /**
-               * @description This will be blank. 
+               * @description This will be blank.
                * @example
                */
               size: string;
               /**
-               * @description This contains the date on which the certificate was last modified in DigiLocker. 
+               * @description This contains the date on which the certificate was last modified in DigiLocker.
                * @example 2015-05-12T15:50:38Z
                */
               date: string;
               /**
-               * @description This will be blank. 
+               * @description This will be blank.
                * @example
                */
               parent: string;
               /**
-               * @description The list of mime types for the certificate data. This field will contain “application/PDF” or “application/xml”. 
+               * @description The list of mime types for the certificate data. This field will contain “application/PDF” or “application/xml”.
                * @example application/pdf
                */
               mime: string;
               /**
-               * @description This is the unique identifier of the document shared by the user in DigiLocker. You will use this identifier to get the actual file from DigiLocker using the API. 
+               * @description This is the unique identifier of the document shared by the user in DigiLocker. You will use this identifier to get the actual file from DigiLocker using the API.
                * @example in.gov.cbse-HSCER-201412345678
                */
               uri: string;
               /**
-               * @description A 5 character unique document type provided by DigiLocker. 
+               * @description A 5 character unique document type provided by DigiLocker.
                * @example HSCER
                */
               doctype: string;
               /**
-               * @description This is the descriptive document type stored in DigiLocker such as ‘Income Certificate’ or ‘Driving License’. 
+               * @description This is the descriptive document type stored in DigiLocker such as ‘Income Certificate’ or ‘Driving License’.
                * @example Class XII Marksheet
                */
               description: string;
               /**
-               * @description The name of the issuer. 
+               * @description The name of the issuer.
                * @example CBSE
                */
               issuer: string;
               /**
-               * @description Unique DigiLocker issuer id as mentioned in the URI. 
+               * @description Unique DigiLocker issuer id as mentioned in the URI.
                * @example in.gov.cbse
                */
               issuerid: string;
@@ -1482,7 +1488,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_token */
             error?: string;
             /** @example The access token is invalid */
@@ -1493,16 +1499,18 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": components["schemas"]["ResponseSix"] | components["schemas"]["ResponseSeven"];
+          'application/json':
+            | components['schemas']['ResponseSix']
+            | components['schemas']['ResponseSeven'];
         };
       };
     };
   };
   /**
-   * Get File from URI 
+   * Get File from URI
    * @description Returns a file from URI. This API can be used to fetch both issued document and uploaded document.
    */
-  "Get File from URI id": {
+  'Get File from URI id': {
     parameters: {
       path: {
         /** @description This is the unique identifier of the document. */
@@ -1513,16 +1521,16 @@ export interface operations {
       /** @description successful operation */
       200: {
         content: {
-          "application/pdf": string;
-          "image/jpg": string;
-          "image/jpeg": string;
-          "image/png": string;
+          'application/pdf': string;
+          'image/jpg': string;
+          'image/jpeg': string;
+          'image/png': string;
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example uri_missing */
             error?: string;
             /** @example URI parameter missing */
@@ -1533,7 +1541,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_token */
             error?: string;
             /** @example The access token is invalid */
@@ -1544,7 +1552,7 @@ export interface operations {
       /** @description Not found */
       404: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_uri */
             error?: string;
             /** @example No file found for given URI */
@@ -1555,22 +1563,28 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": components["schemas"]["Response3"] | components["schemas"]["Response4"] | components["schemas"]["Response5"] | components["schemas"]["Response6"];
+          'application/json':
+            | components['schemas']['Response3']
+            | components['schemas']['Response4']
+            | components['schemas']['Response5']
+            | components['schemas']['Response6'];
         };
       };
       /** @description Gateway timeout */
       503: {
         content: {
-          "application/json": components["schemas"]["Response1"] | components["schemas"]["Response2"];
+          'application/json':
+            | components['schemas']['Response1']
+            | components['schemas']['Response2'];
         };
       };
     };
   };
   /**
-   * Get Certificate Data in XML Format from URI 
+   * Get Certificate Data in XML Format from URI
    * @description Returns the certificate data in machine readable XML format for a URI. This API can be used to only for issued documents. The XML data may not be available for all documents. If the XML data is available for a particular document, the mime parameter in Get List of Issued Documents API will contain application/xml. Please refer to Digital Locker XML Certificate Formats for more details of XML formats of various documents.
    */
-  "Get Certificate Data in XML Format from URI id": {
+  'Get Certificate Data in XML Format from URI id': {
     parameters: {
       path: {
         uri: string;
@@ -1580,13 +1594,13 @@ export interface operations {
       /** @description successful operation */
       200: {
         content: {
-          "application/xml": components["schemas"]["XMLFormatSchema"];
+          'application/xml': components['schemas']['XMLFormatSchema'];
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example uri_missing */
             error?: string;
             /** @example URI parameter missing */
@@ -1597,7 +1611,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_token */
             error?: string;
             /** @example The access token is invalid */
@@ -1608,7 +1622,7 @@ export interface operations {
       /** @description Not found */
       404: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_uri */
             error?: string;
             /** @example No file found for given URI */
@@ -1619,33 +1633,39 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": components["schemas"]["Response3"] | components["schemas"]["Response4"] | components["schemas"]["Response5"] | components["schemas"]["Response6"];
+          'application/json':
+            | components['schemas']['Response3']
+            | components['schemas']['Response4']
+            | components['schemas']['Response5']
+            | components['schemas']['Response6'];
         };
       };
       /** @description Gateway timeout */
       503: {
         content: {
-          "application/json": components["schemas"]["Response1"] | components["schemas"]["Response2"];
+          'application/json':
+            | components['schemas']['Response1']
+            | components['schemas']['Response2'];
         };
       };
     };
   };
   /**
-   * Get e-Aadhaar Data in XML Format 
+   * Get e-Aadhaar Data in XML Format
    * @description Returns e-Aadhaar data in XML format for the account.
    */
-  "Get e-Aadhaar Data in XML Format id": {
+  'Get e-Aadhaar Data in XML Format id': {
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/xml": components["schemas"]["EaadharXamlSchema"];
+          'application/xml': components['schemas']['EaadharXamlSchema'];
         };
       };
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid token */
             error?: string;
             /** @example The access token is invalid */
@@ -1656,33 +1676,41 @@ export interface operations {
       /** @description Not found */
       404: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @enum {unknown} */
-            error?: "aadhaar_not_linked" | "aadhaar_not_available";
+            error?: 'aadhaar_not_linked' | 'aadhaar_not_available';
             /** @enum {unknown} */
-            error_description?: "Aadhaar is not linked to the account" | "Aadhaar data is not available for this user. Please perform Aadhaar eKYC again.";
+            error_description?:
+              | 'Aadhaar is not linked to the account'
+              | 'Aadhaar data is not available for this user. Please perform Aadhaar eKYC again.';
           };
         };
       };
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": components["schemas"]["Response3"] | components["schemas"]["Response4"] | components["schemas"]["Response5"] | components["schemas"]["Response6"];
+          'application/json':
+            | components['schemas']['Response3']
+            | components['schemas']['Response4']
+            | components['schemas']['Response5']
+            | components['schemas']['Response6'];
         };
       };
       /** @description Gateway timeout */
       503: {
         content: {
-          "application/json": components["schemas"]["Response1"] | components["schemas"]["Response2"];
+          'application/json':
+            | components['schemas']['Response1']
+            | components['schemas']['Response2'];
         };
       };
     };
   };
   /**
-   * Upload file to locker 
+   * Upload file to locker
    * @description This API can be used to save/upload a file to uploaded documents in DigiLocker. The allowed file types are JPG, JPEG, PNG and PDF. The file size must not exceed 10MB.
    */
-  "Upload File to Locker id": {
+  'Upload File to Locker id': {
     parameters: {
       header?: {
         /** @description The destination path of the file in DigiLocker including filename. */
@@ -1693,35 +1721,57 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/octet-stream": components["schemas"]["FileUpload"];
-        "image/png": string;
-        "image/jpeg": string;
-        "image/jpg": string;
-        "image/pdf": string;
+        'application/octet-stream': components['schemas']['FileUpload'];
+        'image/png': string;
+        'image/jpeg': string;
+        'image/jpg': string;
+        'image/pdf': string;
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": components["schemas"]["FileUploadResponse"];
+          'application/json': components['schemas']['FileUploadResponse'];
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @enum {unknown} */
-            error?: "path_missing" | "contenttype_missing" | "hmac_missing" | "filename_missing" | "hmac_mismatch" | "invalid_filename" | "invalid_filesize" | "invalid_filetype" | "invalid_path" | "file_data_missing" | "mimetype_mismatch";
+            error?:
+              | 'path_missing'
+              | 'contenttype_missing'
+              | 'hmac_missing'
+              | 'filename_missing'
+              | 'hmac_mismatch'
+              | 'invalid_filename'
+              | 'invalid_filesize'
+              | 'invalid_filetype'
+              | 'invalid_path'
+              | 'file_data_missing'
+              | 'mimetype_mismatch';
             /** @enum {unknown} */
-            error_description?: "Path parameter is missing" | "Content-Type parameter is missing" | "HMAC parameter is missing" | "Filename is missing in path parameter" | "HMAC does not match" | "Restricted characters are not allowed in file name" | "The file size exceeds maximum allowed file size of 10MB" | "The file type is not allowed" | "The destination folder does not exist" | "Missing file content in the request" | "The mimetype provided in Content-Type parameter does not match with the mimetype of the file";
+            error_description?:
+              | 'Path parameter is missing'
+              | 'Content-Type parameter is missing'
+              | 'HMAC parameter is missing'
+              | 'Filename is missing in path parameter'
+              | 'HMAC does not match'
+              | 'Restricted characters are not allowed in file name'
+              | 'The file size exceeds maximum allowed file size of 10MB'
+              | 'The file type is not allowed'
+              | 'The destination folder does not exist'
+              | 'Missing file content in the request'
+              | 'The mimetype provided in Content-Type parameter does not match with the mimetype of the file';
           };
         };
       };
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_token */
             error?: string;
             /** @example The access token is invalid */
@@ -1732,7 +1782,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description unexpected_error */
             error?: string;
             /** @description Internal server error */
@@ -1743,20 +1793,20 @@ export interface operations {
     };
   };
   /**
-   * Pull Document 
+   * Pull Document
    * @description This API allows a client application to search a document/certificate from issuer’s repository using the parameters provided by a user. The searched document is saved in user’s issued document section of DigiLocker if the search is successful.
    */
-  "Pull Document id": {
+  'Pull Document id': {
     requestBody?: {
       content: {
-        "application/x-www-form-urlencoded": components["schemas"]["PullDocumentSchema"];
+        'application/x-www-form-urlencoded': components['schemas']['PullDocumentSchema'];
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": {
+          'application/json': {
             details?: {
               uri: string;
             };
@@ -1766,13 +1816,15 @@ export interface operations {
       /** @description Bad request */
       400: {
         content: {
-          "application/json": components["schemas"]["Response13"] | components["schemas"]["ResponseSix"];
+          'application/json':
+            | components['schemas']['Response13']
+            | components['schemas']['ResponseSix'];
         };
       };
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_token */
             error?: string;
             /** @example The access token is invalid */
@@ -1783,7 +1835,7 @@ export interface operations {
       /** @description Not found */
       404: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description record_not_found */
             error?: unknown;
             /** @description No record found in issuer database for given criteria. Please check the details and try again. If problem persists, see the FAQ section for possible causes. */
@@ -1794,38 +1846,46 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": components["schemas"]["Response14"] | components["schemas"]["Response15"] | components["schemas"]["Response16"] | components["schemas"]["Response17"] | components["schemas"]["Response18"];
+          'application/json':
+            | components['schemas']['Response14']
+            | components['schemas']['Response15']
+            | components['schemas']['Response16']
+            | components['schemas']['Response17']
+            | components['schemas']['Response18'];
         };
       };
     };
   };
   /**
-   * SIGN UP 
+   * SIGN UP
    * @description This API is used to validate Aadhaar details and verify the mobile number by generating an OTP. This API call, if successful, will be followed by verify OTP call by the partner application if the user is online or available to perform OTP validation as indicated in verification parameter
    */
-  "SIGN UP id": {
+  'SIGN UP id': {
     requestBody?: {
       content: {
-        "multipart/form-data": components["schemas"]["DemoAuth"];
+        'multipart/form-data': components['schemas']['DemoAuth'];
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": components["schemas"]["DemoAuthResponse"];
+          'application/json': components['schemas']['DemoAuthResponse'];
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": components["schemas"]["Response10"] | components["schemas"]["Response11"] | components["schemas"]["Response12"];
+          'application/json':
+            | components['schemas']['Response10']
+            | components['schemas']['Response11']
+            | components['schemas']['Response12'];
         };
       };
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_client_id */
             error?: string;
             /** @example The client_id parameter is invalid */
@@ -1836,7 +1896,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description unexpected_error */
             error?: unknown;
             /** @description Internal server error */
@@ -1847,32 +1907,35 @@ export interface operations {
     };
   };
   /**
-   * Verify OTP 
+   * Verify OTP
    * @description This API is used to verify the OTP sent by DigiLocker during the sign up API call above.
    */
-  "Verify OTP id": {
+  'Verify OTP id': {
     requestBody?: {
       content: {
-        "multipart/form-data": components["schemas"]["DemoAuthVerify"];
+        'multipart/form-data': components['schemas']['DemoAuthVerify'];
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": components["schemas"]["DemoAuthVerifyResponse"];
+          'application/json': components['schemas']['DemoAuthVerifyResponse'];
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": components["schemas"]["Response7"] | components["schemas"]["Response8"] | components["schemas"]["Response9"];
+          'application/json':
+            | components['schemas']['Response7']
+            | components['schemas']['Response8']
+            | components['schemas']['Response9'];
         };
       };
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_client_id */
             error?: string;
             /** @example The client_id parameter is invalid */
@@ -1883,7 +1946,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description unexpected_error */
             error?: unknown;
             /** @description Internal server error */
@@ -1894,26 +1957,26 @@ export interface operations {
     };
   };
   /**
-   * Get List of Issuers 
+   * Get List of Issuers
    * @description Returns the list of issuers registered with DigiLocker.
    */
-  "Get List of Issuers id": {
+  'Get List of Issuers id': {
     requestBody?: {
       content: {
-        "application/x-www-form-urlencoded": components["schemas"]["Issuer"];
+        'application/x-www-form-urlencoded': components['schemas']['Issuer'];
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": components["schemas"]["IssuerResponse"];
+          'application/json': components['schemas']['IssuerResponse'];
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_parameter */
             error?: string;
             /** @example One or more of the mandatory parameters is missing or invalid. The error description text will contain one or more of the following error texts:|-  Timestamp parameter is missing or invalid  HMAC parameter is missing or invalid */
@@ -1924,7 +1987,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_client_id */
             error?: string;
             /** @example The client_id parameter is invalid */
@@ -1935,7 +1998,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description unexpected_error */
             error?: unknown;
             /** @description Internal server error */
@@ -1946,26 +2009,26 @@ export interface operations {
     };
   };
   /**
-   * Get List of Documents Provided by an Issuer 
+   * Get List of Documents Provided by an Issuer
    * @description Returns a list of documents/certificates issued by an issuer organization registered with DigiLocker.
    */
-  "Get List of Documents Provided by an Issuer id": {
+  'Get List of Documents Provided by an Issuer id': {
     requestBody?: {
       content: {
-        "application/x-www-form-urlencoded": components["schemas"]["DocType"];
+        'application/x-www-form-urlencoded': components['schemas']['DocType'];
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": components["schemas"]["DocTypeResponse"];
+          'application/json': components['schemas']['DocTypeResponse'];
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description invalid_parameter */
             error?: unknown;
             /** @description One or more of the mandatory parameters is missing or invalid. The error description text will contain one or more of the following error texts:|-  The orgid parameter is missing or invalid  Timestamp parameter is missing or invalid  HMAC parameter is missing or invalid */
@@ -1976,7 +2039,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_client_id */
             error?: string;
             /** @example The client_id parameter is invalid */
@@ -1987,7 +2050,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description unexpected_error */
             error?: unknown;
             /** @description Internal server error */
@@ -1998,26 +2061,26 @@ export interface operations {
     };
   };
   /**
-   * Get Search Parameters for a Document 
+   * Get Search Parameters for a Document
    * @description Returns a list of parameters required to search a document/certificate of an issuer organization registered with DigiLocker. These parameters are used to pull a document from issuer’s repository using Pull Document API mentioned in subsequent section.
    */
-  "Get Search Parameters for a Document id": {
+  'Get Search Parameters for a Document id': {
     requestBody?: {
       content: {
-        "application/x-www-form-urlencoded": components["schemas"]["SearchParameters"];
+        'application/x-www-form-urlencoded': components['schemas']['SearchParameters'];
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": components["schemas"]["SearchParametersResponse"];
+          'application/json': components['schemas']['SearchParametersResponse'];
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description invalid_parameter */
             error?: unknown;
             /** @description One or more of the mandatory parameters is missing or invalid. The error description text will contain one or more of the following error texts:|-  The orgid parameter is missing or invalid  The doctype parameter is missing or invalid  Timestamp parameter is missing or invalid  HMAC parameter is missing or invalid */
@@ -2028,7 +2091,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @example invalid_client_id */
             error?: string;
             /** @example The client_id parameter is invalid */
@@ -2039,7 +2102,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description unexpected_error */
             error?: unknown;
             /** @description Internal server error */
@@ -2050,26 +2113,26 @@ export interface operations {
     };
   };
   /**
-   * Verify Account 
+   * Verify Account
    * @description This API can be used to verify whether a mobile number or Aadhaar number is already registered with DigiLocker.
    */
-  "Verify Account id": {
+  'Verify Account id': {
     requestBody?: {
       content: {
-        "multipart/form-data": components["schemas"]["VerifyAccount"];
+        'multipart/form-data': components['schemas']['VerifyAccount'];
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": components["schemas"]["VerifyAccountResponse"];
+          'application/json': components['schemas']['VerifyAccountResponse'];
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description invalid_parameter */
             error?: unknown;
             /** @description One or more of the mandatory parameters is missing or invalid. The error description text will contain one or more of the following error texts:|-  Either one of uid or mobile number is mandatory  Timestamp parameter is missing or invalid  HMAC parameter is missing or invalid */
@@ -2080,7 +2143,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description invalid_client_id */
             error?: string;
             /** @description The client_id parameter is invalid */
@@ -2091,7 +2154,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description unexpected_error */
             error?: unknown;
             /** @description Internal server error */
@@ -2102,26 +2165,26 @@ export interface operations {
     };
   };
   /**
-   * Push URI to Account 
+   * Push URI to Account
    * @description The API can use to push or delete a single URI into Digital Locker using DigiLocker Id acquired using Get User Details API. This API can be used to push the certificate details to Digital Locker as and when a certificate is generated in the issuer system. The issuing departments must register on DigiLocker as a registered Issuer and implement the requisite Issuer APIs as mentioned in Digital Locker Issuer API Specification document prior to pushing certificates using this API.
    */
-  "Push URI to Account id": {
+  'Push URI to Account id': {
     requestBody?: {
       content: {
-        "multipart/form-data": components["schemas"]["PushUri"];
+        'multipart/form-data': components['schemas']['PushUri'];
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": unknown;
+          'application/json': unknown;
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description invalid_parameter */
             error?: string;
             /** @description One or more of the mandatory parameters is missing or invalid. The error description text will contain one or more of the following error texts:|-  URI parameter is missing or invalid  Doctype parameter is missing or invalid  Description parameter is missing or invalid  Docid parameter is missing or invalid  Issuedate parameter is missing orinvalid  Timestamp parameter is missing or invalid  HMAC parameter is missing or invalid   URI already exists in this account   URI already exists in another account */
@@ -2132,7 +2195,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description invalid_client_id */
             error?: string;
             /** @description The client_id parameter is invalid */
@@ -2143,7 +2206,7 @@ export interface operations {
       /** @description Not found */
       404: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description invalid_digilocker_id */
             error?: string;
             /** @description The digilockerid parameter is invalid */
@@ -2154,7 +2217,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description unexpected_error */
             error?: string;
             /** @description Internal server error */
@@ -2165,26 +2228,26 @@ export interface operations {
     };
   };
   /**
-   * Get Statistics 
+   * Get Statistics
    * @description Returns DigiLocker statistics such as the count of users, authentic documents, issuers and requesters as on a specific date.
    */
-  "Get Statistics id": {
+  'Get Statistics id': {
     requestBody?: {
       content: {
-        "multipart/form-data": components["schemas"]["GetStatistics"];
+        'multipart/form-data': components['schemas']['GetStatistics'];
       };
     };
     responses: {
       /** @description successful operation */
       200: {
         content: {
-          "application/json": components["schemas"]["GetStatisticsResponse"];
+          'application/json': components['schemas']['GetStatisticsResponse'];
         };
       };
       /** @description Bad request */
       400: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description invalid_parameter */
             error?: string;
             /** @description One or more of the mandatory parameters is missing or invalid. The error description text will contain one or more of the following error texts:|-  Timestamp parameter is missing or invalid  HMAC parameter is missing or invalid */
@@ -2195,7 +2258,7 @@ export interface operations {
       /** @description Unauthorized error */
       401: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description invalid_client_id */
             error?: string;
             /** @description The client_id parameter is invalid */
@@ -2206,7 +2269,7 @@ export interface operations {
       /** @description Internal Error */
       500: {
         content: {
-          "application/json": {
+          'application/json': {
             /** @description unexpected_error */
             error?: string;
             /** @description Internal server error */
