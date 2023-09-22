@@ -1,9 +1,10 @@
 import { Digilocker, Config } from '../types';
-import { getCodeChallenge } from '../utils';
+import { getCodeChallenge, getCodeVerifier } from '../utils';
 
 export class DigiLockerFunctions implements Digilocker {
     private config: Config;
-    private accessToken: string | null = null; // Initialize accessToken as null
+    private accessToken: string | null = null;
+    private codeVerifier: string | null = null;
 
     constructor(config: Config) {
         this.config = config;
@@ -14,9 +15,9 @@ export class DigiLockerFunctions implements Digilocker {
     }
 
     generateLoginUrl(): string {
+        this.codeVerifier = getCodeVerifier();
         // Generate the code challenge
-        const codeChallenge = getCodeChallenge();
-
+        const codeChallenge = getCodeChallenge(this.codeVerifier);
         // Use the configuration from the DigilockerFunctions instance
         const clientId = this.config.clientId;
         const callbackURL = this.config.callbackURL;
@@ -28,7 +29,11 @@ export class DigiLockerFunctions implements Digilocker {
         return loginUrl;
     }
 
-    async exchangeCodeForToken(code: string, codeVerifier: string): Promise<void> {
+    async exchangeCodeForToken(code: string): Promise<void> {
+        if (!this.codeVerifier) {
+            throw new Error('Code verifier is not available. Call generateLoginUrl first.');
+        }
+
         const tokenUrl = 'https://digilocker.meripehchaan.gov.in/public/oauth2/1/token';
 
         // Use the configuration from the DigiLockerFunctions instance
@@ -38,7 +43,7 @@ export class DigiLockerFunctions implements Digilocker {
 
         // Create the request body in JSON format
         const requestBody = JSON.stringify({
-            code_verifier: codeVerifier,
+            code_verifier: this.codeVerifier,
             grant_type: 'authorization_code',
             redirect_uri: callbackURL,
             code: code,

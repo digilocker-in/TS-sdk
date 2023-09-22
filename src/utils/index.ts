@@ -12,8 +12,10 @@ function generateString(length: number) {
     return result;
 }
 
-export const getCodeChallenge = () => {
-    const codeVerifier = generateString(10) + Date.now();
+export const getCodeVerifier = () => {
+    return generateString(10) + Date.now();
+}
+export const getCodeChallenge = (codeVerifier: string) => {
     const encryptedSha256 = sha256(codeVerifier);
     let encryptedbase64 = btoa(encryptedSha256);
     encryptedbase64 = encryptedbase64.replace(/=/g, ""); // Remove any trailing '='
