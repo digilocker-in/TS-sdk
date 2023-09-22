@@ -1,23 +1,4 @@
-// The logger should ideally have a function to log
-export interface Logger {
-  log: (message: string) => void;
-}
-
-// Define the status as an object containing status and message
-export interface Status<T> {
-  status: 'success' | 'error';
-  message: string;
-  data?: T;
-}
-
-// FetchFunction should be a function type.
-// The specific type definition depends on how you want to use it.
-// Here's a sample based on the Fetch API.
-export interface FetchFunction {
-  (input: RequestInfo, init?: RequestInit): Promise<Response>;
-}
-
-// Config remains the same
+// Define the Config interface
 export interface Config {
   // Application level config
   clientId: string;
@@ -25,30 +6,18 @@ export interface Config {
   callbackURL: string;
 }
 
-// Define the PersistFunction and User types based on your requirements.
-// Here are sample definitions.
-export interface User {
-  id: string;
-  // Add more properties as required
-}
-
-// Redefine Digilocker with the correct types
+// Define the Digilocker interface
 export interface Digilocker {
   init: (config: Config) => Digilocker;
-  generateUser: (userId: string) => User;
-  setPersistence: (persistFunction: PersistFunction) => Status<PersistFunction>;
-  setFetch: (fetchFunction: FetchFunction) => Status<FetchFunction>;
-  setLogger: (logger: Logger) => Status<Logger>;
-
-  utility: {
-    generateCodeChallenge: (codeVerifier?: string) => string;
-  };
+  // ... Add other methods and properties as needed
 }
 
+// Define the DigiLockerDocumentType enum
 export enum DigiLockerDocumentType {
   AADHAAR = 1,
 }
 
+// Define the DocumentMapping interface
 export interface DocumentMapping {
   name: string;
   type: DigiLockerDocumentType;
@@ -57,6 +26,7 @@ export interface DocumentMapping {
   digilockerId: string;
 }
 
+// Define the Document interface
 export interface Document {
   name: string;
   type: string;
@@ -71,25 +41,30 @@ export interface Document {
   issuer: string;
 }
 
+// Define the Issuer interface
 export interface Issuer {
   id: string;
   name: string;
   description: string;
 }
 
+// Define the LoginMetadata interface
 export interface LoginMetadata {
   authorizationCode: string;
   codeVerifier: string;
   accessToken: string;
 }
 
+// Define the PersistResponse type
 export type PersistResponse<T> = {
   status: 'success' | 'error';
   data: T;
 };
 
+// Define the PersistFunction type
 export type PersistFunction = (user: User) => Promise<PersistResponse<User>>;
 
+// Define the DocumentSearchFilter interface
 export interface DocumentSearchFilter {
   digiLockerDocumentType: DigiLockerDocumentType[];
   issuer: Issuer;
@@ -98,15 +73,18 @@ export interface DocumentSearchFilter {
   date__lte: string;
 }
 
+// Define the IssuerSearchFilter interface
 export interface IssuerSearchFilter {
   id: string;
   name: string;
 }
 
+// Define the LoginError interface
 export interface LoginError {
   // Define properties of LoginError if any
 }
 
+// Define the User interface
 export interface User {
   userId: string;
   isLoggedIn: boolean;
@@ -127,7 +105,5 @@ export interface User {
   update: (user: User) => Promise<User>;
   getDocumentByType: (type: DigiLockerDocumentType) => Promise<Document>;
   persist: PersistFunction;
-  fetch: FetchFunction;
-  log: Logger;
   getData: () => Promise<Partial<User>>;
-}
+};
