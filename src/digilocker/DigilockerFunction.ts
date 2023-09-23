@@ -4,7 +4,8 @@ import { getCodeChallenge, getCodeVerifier } from '../utils';
 export class DigiLockerFunctions implements Digilocker {
     private config: Config;
     private accessToken: string | null = null;
-    private codeVerifier: string | null = null;
+    private codeVerifier: string = getCodeVerifier();
+    private codeChallenge: string | null = getCodeChallenge(this.codeVerifier);
 
     constructor(config: Config) {
         this.config = config;
@@ -15,16 +16,13 @@ export class DigiLockerFunctions implements Digilocker {
     }
 
     generateLoginUrl(): string {
-        this.codeVerifier = getCodeVerifier();
-        // Generate the code challenge
-        const codeChallenge = getCodeChallenge(this.codeVerifier);
         // Use the configuration from the DigilockerFunctions instance
         const clientId = this.config.clientId;
         const callbackURL = this.config.callbackURL;
 
         // Construct the login URL
         const loginUrl = `https://digilocker.meripehchaan.gov.in/public/oauth2/1/authorize?` +
-            `response_type=code&client_id=${clientId}&redirect_uri=${callbackURL}&code_challenge_method=S256&code_challenge=${codeChallenge}&state=test`;
+            `response_type=code&client_id=${clientId}&redirect_uri=${callbackURL}&code_challenge_method=S256&code_challenge=${this.codeChallenge}&state=test`;
 
         return loginUrl;
     }
