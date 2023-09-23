@@ -24,7 +24,7 @@ export class DigiLockerFunctions implements Digilocker {
 
         // Construct the login URL
         const loginUrl = `https://digilocker.meripehchaan.gov.in/public/oauth2/1/authorize?` +
-            `response_type=code&client_id=${clientId}&redirect_uri=${callbackURL}&code_challenge_method=S256&code_challenge=${codeChallenge}`;
+            `response_type=code&client_id=${clientId}&redirect_uri=${callbackURL}&code_challenge_method=S256&code_challenge=${codeChallenge}&state=test`;
 
         return loginUrl;
     }
@@ -72,8 +72,8 @@ export class DigiLockerFunctions implements Digilocker {
                 const errorResponse = await response.text();
                 throw new Error(`Error exchanging code for token: ${errorResponse}`);
             }
-        } catch (error: any) {
-            throw new Error(`Failed to exchange code for token: ${error.message}`);
+        } catch (error) {
+            throw new Error(`Failed to exchange code for token:`);
         }
     }
 
@@ -106,8 +106,8 @@ export class DigiLockerFunctions implements Digilocker {
                 const errorResponse = await response.text();
                 throw new Error(`Error fetching issued files: ${errorResponse}`);
             }
-        } catch (error: any) {
-            throw new Error(`Failed to fetch issued files: ${error.message}`);
+        } catch (error) {
+            throw new Error(`Failed to fetch issued files: ${error}`);
         }
     }
 }
