@@ -14,7 +14,8 @@ npm install digilocker-sdk
 
 ## Usage 🧰
 
-1. Initialize Digilocker 🛠️
+1. **Initialize Digilocker** 🛠️
+
    To start using the Digilocker functions, you need to create an instance of the Digilocker class and provide the necessary configuration. Here's how to initialize the Digilocker instance:
 
 ```js
@@ -37,7 +38,8 @@ const digilockerInstance: Digilocker = new DigiLockerFunctions(
 );
 ```
 
-2. Generate Login URL 🌐
+2. **Generate Login URL** 🌐
+
    You can generate a login URL that users can click to initiate the Digilocker login process:
 
 ```js
@@ -45,7 +47,8 @@ const loginUrl = digilockerInstance.generateLoginUrl();
 // Use this loginUrl in your application to redirect users to the Digilocker login page.
 ```
 
-3. Exchange Code for Access Token 🔑
+3. **Exchange Code for Access Token** 🔑
+
    After the user logs in and you receive an authorization code, use the following function to exchange the code for an access token:
 
 ```js
@@ -54,7 +57,7 @@ await digilockerInstance.exchangeCodeForToken(authorizationCode);
 // The access token is now available in the digilockerInstance.accessToken property.
 ```
 
-4. Fetch Issued Files 📂
+4. **Fetch Issued Files** 📂
 
 ```js
 try {
