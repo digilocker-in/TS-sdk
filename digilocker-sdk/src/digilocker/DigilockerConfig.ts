@@ -26,6 +26,4 @@ export class DigiLockerConfig implements Digilocker {
     getCallbackURL(): string {
         return this.callbackURL;
     }
-
-    // You can add methods to set or update configuration values if needed
 }

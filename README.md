@@ -57,7 +57,6 @@ await digilockerInstance.exchangeCodeForToken(authorizationCode);
 // The access token is now available in the digilockerInstance.accessToken property.
 ```
 
-4. **Fetch Issued Files** 📂
 
 ```js
 try {

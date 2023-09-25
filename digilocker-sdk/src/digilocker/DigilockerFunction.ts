@@ -1,5 +1,6 @@
 import { Digilocker, Config } from '../types';
 import { getCodeChallenge, getCodeVerifier } from '../utils';
+import { Buffer } from 'buffer';
 
 export class DigiLockerFunctions implements Digilocker {
     private config: Config;
@@ -47,12 +48,28 @@ export class DigiLockerFunctions implements Digilocker {
             code: code,
         });
 
+        let base64EncodedCredentials;
+        // Check if the Buffer module is available (Node.js environment)
+        if (typeof Buffer !== 'undefined') {
+            base64EncodedCredentials = Buffer.from(`${clientId}${clientSecret}`).toString('base64');
+        } else {
+            // Use browser-compatible alternative (for browser environment)
+            const textEncoder = new TextEncoder();
+            const credentials = textEncoder.encode(`${clientId}:${clientSecret}`);
+            // @ts-ignore
+            base64EncodedCredentials = btoa(String.fromCharCode.apply(null, credentials));
+            console.log(base64EncodedCredentials);
+
+        }
+
+
         // Create the headers with authorization
         const headers = {
             'Content-Type': 'application/json',
-            'Authorization': `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString('base64')}`,
+            'Authorization': `Basic ${base64EncodedCredentials}`,
         };
 
+        console.log(JSON.stringify(headers));
         try {
             // Make the POST request to exchange code for access token
             const response = await fetch(tokenUrl, {
